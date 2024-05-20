@@ -1,6 +1,6 @@
 module Shifter( dataA, dataB, dataOut );
 input [31:0] dataA ;
-input [31:0] dataB ;
+input [4:0] dataB ;
 output [31:0] dataOut ;
 
 wire [31:0] layer1, layer2, layer3, layer4;
