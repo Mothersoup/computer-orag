@@ -1,5 +1,4 @@
 module ALU( dataA, dataB, dataOut, Signal );
-input reset ;
 input [31:0] dataA ;
 input [31:0] dataB ;
 input [5:0] Signal ;
@@ -21,10 +20,10 @@ assign  sel = (Signal == AND ) ? 3'b000:
 			  (Signal == OR ) ? 3'b001:
 			  (Signal == ADD ) ? 3'b010:
 			  (Signal == SUB ) ? 3'b011:
-			  (Signal == SLT ) ? 3'b011:
-			  3'b100;
-assign pb =( Signal == SUB || SLT  ) ? ~ dataB + 1 : dataB ;
-wire sltOut;
+			  (Signal == SLT ) ? 3'b100:
+			  3'b101;
+assign pb =( Signal == SUB || Signal == SLT  ) ? ~ dataB + 1 : dataB ;
+assign dataOut =  temp;
 			  
 ALU_bitSlice ALU0(  .A(dataA[0]), .B(pb[0]), .Cin( 1'b0 ), .Cout( cout[0] ), .sel(sel), .out( temp[0] ) );
 ALU_bitSlice ALU1(  .A(dataA[1]), .B(pb[1]), .Cin( cout[0] ), .Cout( cout[1] ), .sel(sel), .out( temp[1] ) );
@@ -58,7 +57,6 @@ ALU_bitSlice ALU28(  .A(dataA[28]), .B(pb[28]), .Cin( cout[27] ), .Cout( cout[28
 ALU_bitSlice ALU29(  .A(dataA[29]), .B(pb[29]), .Cin( cout[28] ), .Cout( cout[29] ), .sel(sel), .out( temp[29] ) );
 ALU_bitSlice ALU30(  .A(dataA[30]), .B(pb[30]), .Cin( cout[29] ), .Cout( cout[30] ), .sel(sel), .out( temp[30] ) );
 ALU_bitSlice ALU31(  .A(dataA[31]), .B(pb[31]), .Cin( cout[30] ), .Cout( cout[31] ), .sel(sel), .out( temp[31] ) );
-assign sltOut = ( temp[31] == 1 ) ? 1 : 0;
-assign dataOut = (Signal == SLT) ? sltOut : temp;
+
 
 endmodule

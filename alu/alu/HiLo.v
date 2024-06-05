@@ -21,7 +21,7 @@ reset訊號 如果是reset就做歸0
 */
   else
   begin
-    HiLo = mutiAns ;
+    HiLo = mutiAns;
   end
 /*
 把傳入的除法答案存起來

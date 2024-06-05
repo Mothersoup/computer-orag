@@ -9,4 +9,4 @@ module FA(in0, in1, cin, out, cout);
 	and gateAnd1(e3, e1, cin );
 	or gateOR( cout, e2, e3 );
 	xor gateXor1( out, e1, cin);
-endmodule;
+endmodule

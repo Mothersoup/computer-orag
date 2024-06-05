@@ -1,17 +1,15 @@
 `timescale 1ns/1ns
-module HiLo( clk, DivAns, HiOut, LoOut, reset );
+module HiLo( clk, MUTAns, HiOut, LoOut, reset );
 input clk ;
 input reset ;
-input [63:0] DivAns ;
+input [63:0] MUTAns ;
 output [31:0] HiOut ;
 output [31:0] LoOut ;
 
 reg [63:0] HiLo ;
 
 /*
-=====================================================
-下面為模擬範例，程式撰寫請遵照老師上課說明的方法來寫
-=====================================================
+
 */
 always@( posedge clk or reset )
 begin
@@ -24,7 +22,7 @@ reset訊號 如果是reset就做歸0
 */
   else
   begin
-    HiLo = DivAns ;
+    HiLo = MUTAns ;
   end
 /*
 把傳入的除法答案存起來
