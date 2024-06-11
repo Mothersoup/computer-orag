@@ -25,6 +25,7 @@ always @( posedge clk or posedge reset ) begin
                 case ( signal )
                     MULTU:
                     begin
+								//$display( "this is test for    %d = ", product );
                         if ( counter == 6'b0 ) begin
                             dataA_reg = dataA;  // apply value 
                             temp      = dataB;

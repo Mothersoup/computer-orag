@@ -2,10 +2,10 @@
 	Title:	ALU Control Unit
 	Author: Garfield (Computer System and Architecture Lab, ICE, CYCU)
 	Input Port
-		1. ALUOp: æ§åˆ¶aluæ˜¯è¦ç”¨+é‚„æ˜¯-æˆ–æ˜¯å…¶ä»–æŒ‡ä»¤
-		2. Funct: å¦‚æœæ˜¯å…¶ä»–æŒ‡ä»¤å‰‡ç”¨é€™é‚Š6ç¢¼åˆ¤æ–·
+		1. ALUOp: ±±¨îalu¬O­n¥Î+ÁÙ¬O-©Î¬O¨ä¥L«ü¥O
+		2. Funct: ¦pªG¬O¨ä¥L«ü¥O«h¥Î³oÃä6½X§PÂ_
 	Output Port
-		1. ALUOperation: æœ€å¾Œè§£ç¢¼å®Œæˆä¹‹æŒ‡ä»¤
+		1. ALUOperation: ³Ì«á¸Ñ½X§¹¦¨¤§«ü¥O
 */
 
 module alu_ctl( clk, ALUOp, Funct, SignaltoALU, SignaltoSHT,  SignaltoMut, SignaltoMUX );
@@ -40,7 +40,7 @@ always@( posedge clk )
 		counter = 0 ;
 	  end
 	/*
-	å¦‚æœè¨Šè™Ÿæ”¹è®Šæˆé™¤æ³• å°±æŠŠcounteræ­¸0
+	¦pªG°T¸¹§ïÅÜ¦¨°£ªk ´N§âcounterÂk0
 */
 end
 
@@ -64,7 +64,7 @@ end
         endcase
       end
 	/*
-	æ•¸32å€‹clkç„¶å¾Œé–‹å•ŸHiLoæš«å­˜å™¨çµ¦é™¤æ³•å™¨æ”¾å€¼é€²å»
+	¼Æ32­ÓclkµM«á¶}±ÒHiLo¼È¦s¾¹µ¹°£ªk¾¹©ñ­È¶i¥h
 	*/
 	end
 

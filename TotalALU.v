@@ -1,10 +1,11 @@
 `timescale 1ns/1ns
-module TotalALU( clk, dataA, dataB, Signal, Output, reset );
+module TotalALU( clk, reset, ALUop, Signal, dataA, dataB, Output );
 input reset ;
 input clk ;
 input [31:0] dataA ;
 input [31:0] dataB ;
 input [5:0] Signal ;
+input [1:0] ALUop;
 output [31:0] Output ;
 
 //   Signal ( 6-bits)?
@@ -44,9 +45,9 @@ wire [63:0] MUTAns ;
 定義各種接線
 */
 //============================
-ALUControl ALUControl( .clk(clk), .Signal(Signal), .SignaltoALU(SignaltoALU), .SignaltoSHT(SignaltoSHT), .SignaltoMUT(SignaltoMUT), .SignaltoMUX(SignaltoMUX) );
+ALUControl ALUControl( .clk(clk), .ALUOp(ALUop), .Signal(Signal), .SignaltoALU(SignaltoALU), .SignaltoSHT(SignaltoSHT), .SignaltoMUT(SignaltoMUT), .SignaltoMUX(SignaltoMUX) );
 ALU ALU( .dataA(dataA), .dataB(dataB), .Signal(SignaltoALU), .dataOut(ALUOut)  );
-Multiplier multiplier(  .clk(clk), .dataA(dataA), .dataB(dataB), .reset(reset), .dataOut(dataOut), .signal(SignaltoMUT) );
+Multiplier multiplier(  .clk(clk), .dataA(dataA), .dataB(dataB), .reset(reset), .dataOut(MUTAns), .signal(SignaltoMUT) );
 Shifter Shifter( .dataA(dataA), .dataB(dataB), .dataOut(ShifterOut)  );
 HiLo HiLo( .clk(clk), .mutiAns(MUTAns), .HiOut(HiOut), .LoOut(LoOut), .reset(reset) );
 ALUMUX ALUMUX( .ALUOut(ALUOut), .HiOut(HiOut), .LoOut(LoOut), .Shifter(ShifterOut), .Signal(SignaltoMUX), .dataOut(dataOut) );

@@ -1,0 +1,29 @@
+module stallMux( stall,   RegWrite, MemtoReg, MemRead, MemWrite, RegDst,  ALUOp,  ALUSrc, RegWrite_out, MemtoReg_out, MemRead_out, MemWrite_out, RegDst_out, ALUOp_out   );
+    input wire stall;
+    input wire RegWrite;
+    input wire MemtoReg;
+    input wire MemRead;
+    input wire MemWrite;
+    input wire RegDst;
+    input wire [1:0] ALUOp;
+    input wire ALUSrc;
+    output wire RegWrite_out;
+    output wire MemtoReg_out;
+    output wire MemRead_out;
+    output wire MemWrite_out;
+    output wire RegDst_out;
+    output wire [1:0] ALUOp_out;
+    output wire ALUSrc_out;
+
+ 
+    mux mux_RegWrite (.s(stall), .i0(RegWrite), .i1(1'b0), .o(RegWrite_out));
+    mux mux_MemtoReg (.s(stall), .i0(MemtoReg), .i1(1'b0), .o(MemtoReg_out));
+    mux mux_MemRead (.s(stall), .i0(MemRead), .i1(1'b0), .o(MemRead_out));
+    mux mux_MemWrite (.s(stall), .i0(MemWrite), .i1(1'b0), .o(MemWrite_out));
+    mux mux_RegDst (.s(stall), .i0(RegDst), .i1(1'b0), .o(RegDst_out));
+    mux mux_ALUSrc (.s(stall), .i0(ALUSrc), .i1(1'b0), .o(ALUSrc_out));
+    
+    // ALUOp 兩位
+    mux mux_ALUOp_0 (.s(stall), .i0(ALUOp[0]), .i1(1'b0), .o(ALUOp_out[0]));
+    mux mux_ALUOp_1 (.s(stall), .i0(ALUOp[1]), .i1(1'b0), .o(ALUOp_out[1]));
+end module 
